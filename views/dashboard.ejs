@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/cssfiles/dashboard.css">
+</head>
+
+<body>
+    <div>
+        <h2>Dashboard</h2>
+        <p>Hi, <%= user.email %>
+        </p>
+        <img src="<%= user.profile %>" alt="Profile" width="100">
+        <p><a href="/blogs/add">Add Blog</a> | <a href="/blogs/list">View Blogs</a> | <a href="/blogs/other">View Other's Blogs</a></p>
+
+    </div>
+</body>
+
+</html>

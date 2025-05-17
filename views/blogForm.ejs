@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/cssfiles/blogForm.css">
+</head>
+
+<body>
+    <div>
+        <h2>
+            <%= blog ? "Edit Blog" : "Add Blog" %>
+        </h2>
+        <form action="<%= blog ? '/blogs/edit/' + blog._id : '/blogs/add' %>" method="POST"
+            enctype="multipart/form-data">
+            <input type="text" name="title" placeholder="Title" value="<%= blog ? blog.title : '' %>" required><br>
+            <textarea name="description" placeholder="Description"
+                required><%= blog ? blog.description : '' %></textarea><br>
+            <input type="file" name="image"><br>
+            <% if (blog && blog.image) { %>
+                <img src="<%= blog.image %>" width="100"><br>
+                <% } %>
+                    <button type="submit">
+                        <%= blog ? "Update" : "Create" %>
+                    </button>
+        </form>
+        <a href="javascript:history.back()">Back</a>
+    </div>
+</body>
+
+</html>

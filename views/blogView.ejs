@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/cssfiles/blogView.css">
+</head>
+
+<body>
+    <div>
+        <h2>
+            <%= blog.title %>
+        </h2>
+        <img src="<%= blog.image %>" width="200"><br>
+        <p>
+            <%= blog.description %>
+        </p>
+
+        <h3>Comments</h3>
+        <form action="/comments/<%= blog._id %>" method="POST">
+            <input type="text" name="text" placeholder="Add a comment" required>
+            <button type="submit">Post</button>
+        </form>
+
+        <ul>
+            <% blog.comments.forEach(comment=> { %>
+                <li>
+                    <p>
+                        <%= comment.text %>
+                    </p>
+                    <ul>
+                        <% comment.replies.forEach(reply=> { %>
+                            <li style="margin-left: 40px;">
+                                <%= reply.text %>
+                            </li>
+                            <% }) %>
+                    </ul>
+                    <form action="/comments/reply/<%= blog._id %>/<%= comment._id %>" method="POST"
+                        style="margin-left: 20px;">
+                        <input type="text" name="text" placeholder="Reply..." required>
+                        <button type="submit">Reply</button>
+                    </form>
+                
+                </li>
+                <% }) %>
+        </ul>
+
+        <a href="javascript:history.back()">Back</a>
+
+    </div>
+</body>
+
+</html>

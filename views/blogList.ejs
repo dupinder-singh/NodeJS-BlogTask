@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/cssfiles/blogList.css">
+</head>
+
+<body>
+    <div>
+        <h2><%= other ? "Other's Blogs" : "Your Blogs" %></h2>
+        <div class="horizontal-scroll">
+            <table border="1">
+                <tr>
+                    <th>Title</th>
+                    <th>Image</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+                <% blogs.forEach(blog=> { %>
+                    <tr>
+                        <td>
+                            <%= blog.title %>
+                        </td>
+                        <td><img src="<%= blog.image %>" width="100"></td>
+                        <td>
+                            <%= blog.description.substring(0, 100) %>...
+                        </td>
+                        <td>
+                            <a href="/blogs/view/<%= blog._id %>">View</a>
+                            <% if (!other) { %>
+                                | <a href="/blogs/edit/<%= blog._id %>">Edit</a>
+                                | <a href="/blogs/delete/<%= blog._id %>" onclick="return confirm('Are you sure?')">Delete</a>
+                            <% } %>
+                            
+                        </td>
+                    </tr>
+                    <% }) %>
+            </table>
+        </div>
+      
+        <a href="javascript:history.back()">Back</a>
+    </div>
+</body>
+
+</html>
