@@ -31,8 +31,14 @@ exports.getAddBlog = (req, res) => {
   
   exports.postEditBlog = async (req, res) => {
     const { title, description } = req.body;
-    if (req.file) updateData.image = '/images/upload/' + req.file.filename;
-    await Blog.findByIdAndUpdate(req.params.id, { title, description });
+    const updateData = { title, description };
+    if (req.file) {
+      updateData.image = '/images/upload/' + req.file.filename;
+    }
+    console.log('Uploaded file:', req.file);
+
+    // if (req.file) updateData.image = '/images/upload/' + req.file.filename;
+    await Blog.findByIdAndUpdate(req.params.id, updateData);
     res.redirect('/blogs/list');
   };
   
